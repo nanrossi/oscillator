@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <title>Audio</title>
+    </head>
+    <body>
+        <select id="type" onchange="init()">
+            <option>-</option>
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Saw</option>
+            <option value="triangle">Triangle</option>
+        </select>
+        <script>
+            document.body.onkeydown = (e) => play(e);
+            document.body.onkeyup = (e) => pause(e);
+
+            const context = new (window.AudioContext || window.webkitAudioContext)()
+            const osc = context.createOscillator()
+            let isPlaying = false;
+            let multiplicador = 1;
+            osc.start()
+            
+
+            function init() {
+                osc.type = document.getElementById('type').value
+            }
+
+            function play(e) {
+                if (!isPlaying) {
+                    switch (e.keyCode) {
+                        case 65:
+                            osc.frequency.value = 1000 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 87:
+                            osc.frequency.value = 1042 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 83:
+                            osc.frequency.value = 1125 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 69:
+                            osc.frequency.value = 1172 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 68:
+                            osc.frequency.value = 1250 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 70:
+                            osc.frequency.value = 1333 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 84:
+                            osc.frequency.value = 1389 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 71:
+                            osc.frequency.value = 1500 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 89:
+                            osc.frequency.value = 1563 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 72:
+                            osc.frequency.value = 1667 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 85:
+                            osc.frequency.value = 1737 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 74:
+                            osc.frequency.value = 1875 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 75:
+                            osc.frequency.value = 2000 * multiplicador;
+                            osc.connect(context.destination)
+                            isPlaying = true
+                            break;
+                        case 90:
+                            multiplicador = multiplicador / 2;
+                            break;
+                        case 88:
+                            multiplicador = multiplicador * 2;
+                            break;
+                    } 
+                }
+            }
+
+            function pause() {
+                if (isPlaying) {
+                    osc.disconnect(context.destination)
+                    isPlaying = false
+                }
+            }
+        </script>
+    </body>
+</html>
